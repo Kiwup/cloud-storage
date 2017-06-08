@@ -1,0 +1,28 @@
+{
+  "name": "cloud-storage",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "e2e": "tape 'test/e2e/*.e2e.js' | tap-spec"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "1.1.1",
+    "aws-sdk": "2.64.0",
+    "bluebird": "3.5.0",
+    "is-stream": "1.1.0"
+  },
+  "devDependencies": {
+    "nyc": "11.0.2",
+    "publish": "0.6.0",
+    "request": "2.81.0",
+    "request-promise": "4.2.1",
+    "standard": "10.0.2",
+    "tap-spec": "4.1.1",
+    "tape": "4.6.3"
+  }
+}
