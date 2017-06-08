@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 8.0.0
+
+test:
+  pre:
+    - npm install
+  override:
+    - npm run e2e
