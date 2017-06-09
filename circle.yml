@@ -3,6 +3,8 @@ machine:
     version: 8.0.0
 
 test:
+  dependencies:
+    - echo ${GCP_CREDENTIALS} | base64 --decode --ignore-garbage > ${HOME}/test/e2e/gcp_key.json
   override:
     - npm test
     - npm run e2e
