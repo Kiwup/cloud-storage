@@ -4,7 +4,7 @@ machine:
 
 test:
   pre:
-    - echo ${GCP_CREDENTIALS} | base64 --decode --ignore-garbage > ${HOME}/test/e2e/gcp_key.json
+    - echo ${GCP_CREDENTIALS} | base64 --decode --ignore-garbage > ${HOME}/cloud-storage/test/e2e/gcp_key.json
   override:
     - npm test
     - npm run e2e
