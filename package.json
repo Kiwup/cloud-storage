@@ -1,15 +1,24 @@
 {
-  "name": "cloud-storage",
+  "name": "@rlvt/cloud-storage",
   "version": "0.2.0",
-  "description": "",
+  "description": "A simple wrapper for managing blob storage on AWS S3 and Google Storage with a unified API",
   "main": "index.js",
+  "engines": {
+    "node": ">=5.0.0"
+  },
   "scripts": {
     "test": "standard",
-    "e2e": "tape 'test/e2e/*.e2e.js' | tap-spec"
+    "e2e": "tape 'test/e2e/*.e2e.js' | tap-spec",
+    "2npm": "publish"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "s3",
+    "google storage",
+    "aws",
+    "gcp"
+  ],
+  "author": "Reelevant Team",
+  "license": "MIT",
   "dependencies": {
     "@google-cloud/storage": "1.1.1",
     "aws-sdk": "2.64.0",
