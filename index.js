@@ -9,6 +9,7 @@ function adapter (provider) {
   } else if (provider === 'googleStorage') {
     return googleStorage
   }
+  throw new Error('unsupported provider. must be `s3` or `googleStorage`')
 }
 
 adapter.s3 = s3

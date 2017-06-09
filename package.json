@@ -7,9 +7,18 @@
     "node": ">=5.0.0"
   },
   "scripts": {
-    "test": "standard",
+    "pretest": "standard",
+    "test": "nyc --all tape 'test/unit/*.test.js' | tap-spec",
+    "posttest": "nyc report --reporter=lcov",
     "e2e": "tape 'test/e2e/*.e2e.js' | tap-spec",
     "2npm": "publish"
+  },
+  "nyc": {
+    "exclude": [
+      "test",
+      "coverage",
+      "node_modules"
+    ]
   },
   "repository": {
     "type": "git",
@@ -35,6 +44,7 @@
   },
   "devDependencies": {
     "nyc": "11.0.2",
+    "proxyquire": "1.8.0",
     "publish": "0.6.0",
     "request": "2.81.0",
     "request-promise": "4.2.1",

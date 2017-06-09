@@ -1,2 +1,4 @@
 node_modules
 test/e2e/gcp_key.json
+.nyc_output
+coverage
