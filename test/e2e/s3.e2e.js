@@ -17,7 +17,6 @@ if (!S3_ACCESS_KEY_ID || !S3_SECRET_ACCESS_KEY || !S3_REGION) {
 }
 
 const samplePath = path.join(__dirname, 'sample.json')
-const testBucket = `cloud-storage-e2e-${Date.now()}`
 const testObject = 'test'
 const storage = s3({
   accessKeyId: S3_ACCESS_KEY_ID,
@@ -25,7 +24,7 @@ const storage = s3({
   region: S3_REGION
 })
 
-function setup (t) {
+function setup (testBucket, t) {
   t.test('create test bucket', (t) => {
     // native aws-sdk API
     storage.client.createBucket({
@@ -37,7 +36,7 @@ function setup (t) {
   })
 }
 
-function teardown (t) {
+function teardown (testBucket, t) {
   t.test('delete test object', (t) => {
     // native aws-sdk API
     storage.client.deleteObject({
@@ -54,7 +53,8 @@ function teardown (t) {
 }
 
 test('S3 > upload a buffer with public access', (t) => {
-  setup(t)
+  const testBucket = `cloud-storage-e2e-${Date.now()}`
+  setup(testBucket, t)
 
   t.test('upload a buffer', (t) => {
     fs.readFile(samplePath, (err, data) => {
@@ -65,11 +65,12 @@ test('S3 > upload a buffer with public access', (t) => {
     })
   })
 
-  teardown(t)
+  teardown(testBucket, t)
 })
 
 test('S3 > upload a buffer with restricted access', (t) => {
-  setup(t)
+  const testBucket = `cloud-storage-e2e-${Date.now()}`
+  setup(testBucket, t)
 
   t.test('upload a buffer', (t) => {
     fs.readFile(samplePath, (err, data) => {
@@ -80,11 +81,12 @@ test('S3 > upload a buffer with restricted access', (t) => {
     })
   })
 
-  teardown(t)
+  teardown(testBucket, t)
 })
 
 test('S3 > upload a buffer publicly and specifying content-type', (t) => {
-  setup(t)
+  const testBucket = `cloud-storage-e2e-${Date.now()}`
+  setup(testBucket, t)
 
   t.test('upload a buffer', (t) => {
     fs.readFile(samplePath, (err, data) => {
@@ -95,11 +97,12 @@ test('S3 > upload a buffer publicly and specifying content-type', (t) => {
     })
   })
 
-  teardown(t)
+  teardown(testBucket, t)
 })
 
 test('S3 > upload a stream with public access', (t) => {
-  setup(t)
+  const testBucket = `cloud-storage-e2e-${Date.now()}`
+  setup(testBucket, t)
 
   t.test('upload a stream', (t) => {
     const data = fs.createReadStream(samplePath)
@@ -107,11 +110,12 @@ test('S3 > upload a stream with public access', (t) => {
     uploadPublic(storage, testBucket, testObject, t, data)
   })
 
-  teardown(t)
+  teardown(testBucket, t)
 })
 
 test('S3 > upload a stream with restricted access', (t) => {
-  setup(t)
+  const testBucket = `cloud-storage-e2e-${Date.now()}`
+  setup(testBucket, t)
 
   t.test('upload a stream', (t) => {
     const data = fs.createReadStream(samplePath)
@@ -119,11 +123,12 @@ test('S3 > upload a stream with restricted access', (t) => {
     uploadRestricted(storage, testBucket, testObject, t, data)
   })
 
-  teardown(t)
+  teardown(testBucket, t)
 })
 
 test('S3 > upload a stream publicly and specifying content-type', (t) => {
-  setup(t)
+  const testBucket = `cloud-storage-e2e-${Date.now()}`
+  setup(testBucket, t)
 
   t.test('upload a stream', (t) => {
     const data = fs.createReadStream(samplePath)
@@ -131,5 +136,5 @@ test('S3 > upload a stream publicly and specifying content-type', (t) => {
     uploadPublicWithContentType(storage, testBucket, testObject, t, data)
   })
 
-  teardown(t)
+  teardown(testBucket, t)
 })
