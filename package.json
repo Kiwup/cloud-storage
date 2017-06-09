@@ -11,6 +11,10 @@
     "e2e": "tape 'test/e2e/*.e2e.js' | tap-spec",
     "2npm": "publish"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiwup/cloud-storage.git"
+  },
   "keywords": [
     "s3",
     "google storage",
@@ -19,6 +23,10 @@
   ],
   "author": "Reelevant Team",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kiwup/cloud-storage/issues"
+  },
+  "homepage": "https://github.com/Kiwup/cloud-storage#readme",
   "dependencies": {
     "@google-cloud/storage": "1.1.1",
     "aws-sdk": "2.64.0",
