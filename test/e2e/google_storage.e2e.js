@@ -9,6 +9,10 @@ const {
   uploadPublicWithContentType,
   uploadRestricted
 } = require('./upload')
+const {
+  getReadStream,
+  getReadStreamIfNoneMatch
+} = require('./get_read_stream')
 
 const { GCP_PROJECT_ID, GCP_REGION } = process.env
 
@@ -62,6 +66,7 @@ test('Google > upload a buffer with public access', (t) => {
 
 test('Google > upload a buffer with restricted access', (t) => {
   const testBucket = `cloud-storage-e2e-${Date.now()}`
+  const refObj = {}
   setup(testBucket, t)
 
   t.test('upload a buffer', (t) => {
@@ -71,6 +76,18 @@ test('Google > upload a buffer with restricted access', (t) => {
       }
       uploadRestricted(storage, testBucket, testObject, t, data)
     })
+  })
+
+  t.test('stream back uploaded buffer', (t) => {
+    getReadStream(storage, testBucket, testObject, t, refObj)
+  })
+
+  t.test('stream back uploaded buffer (using previous etag)', (t) => {
+    getReadStreamIfNoneMatch(storage, testBucket, testObject, t, refObj.etag)
+  })
+
+  t.test('stream back uploaded buffer (using a fake etag)', (t) => {
+    getReadStream(storage, testBucket, testObject, t, {}, 'shouldnevermatch')
   })
 
   teardown(testBucket, t)
