@@ -69,6 +69,15 @@ test('S3 > upload a buffer with public access', (t) => {
     })
   })
 
+  t.test('test existence', (t) => {
+    storage.bucket(testBucket).exists({key: testObject})
+      .then((data) => {
+        t.ok(data, 'should return data')
+        t.end()
+      })
+      .catch(t.end)
+  })
+
   teardown(testBucket, t)
 })
 
@@ -98,6 +107,15 @@ test('S3 > upload a buffer with restricted access', (t) => {
     getReadStream(storage, testBucket, testObject, t, {}, 'shouldnevermatch')
   })
 
+  t.test('test existence', (t) => {
+    storage.bucket(testBucket).exists({key: testObject})
+      .then((data) => {
+        t.ok(data, 'should return data')
+        t.end()
+      })
+      .catch(t.end)
+  })
+
   teardown(testBucket, t)
 })
 
@@ -114,6 +132,15 @@ test('S3 > upload a buffer publicly and specifying content-type', (t) => {
     })
   })
 
+  t.test('test existence', (t) => {
+    storage.bucket(testBucket).exists({key: testObject})
+      .then((data) => {
+        t.ok(data, 'should return data')
+        t.end()
+      })
+      .catch(t.end)
+  })
+
   teardown(testBucket, t)
 })
 
@@ -125,6 +152,15 @@ test('S3 > upload a stream with public access', (t) => {
     const data = fs.createReadStream(samplePath)
     data.on('error', t.end)
     uploadPublic(storage, testBucket, testObject, t, data)
+  })
+
+  t.test('test existence', (t) => {
+    storage.bucket(testBucket).exists({key: testObject})
+      .then((data) => {
+        t.ok(data, 'should return data')
+        t.end()
+      })
+      .catch(t.end)
   })
 
   teardown(testBucket, t)
@@ -140,6 +176,15 @@ test('S3 > upload a stream with restricted access', (t) => {
     uploadRestricted(storage, testBucket, testObject, t, data)
   })
 
+  t.test('test existence', (t) => {
+    storage.bucket(testBucket).exists({key: testObject})
+      .then((data) => {
+        t.ok(data, 'should return data')
+        t.end()
+      })
+      .catch(t.end)
+  })
+
   teardown(testBucket, t)
 })
 
@@ -153,5 +198,36 @@ test('S3 > upload a stream publicly and specifying content-type', (t) => {
     uploadPublicWithContentType(storage, testBucket, testObject, t, data)
   })
 
+  t.test('test existence', (t) => {
+    storage.bucket(testBucket).exists({key: testObject})
+      .then((data) => {
+        t.ok(data, 'should return data')
+        t.end()
+      })
+      .catch(t.end)
+  })
+
+  t.test('test existence of non created object', (t) => {
+    storage.bucket(testBucket).exists({key: 'foobar'})
+      .then(() => {
+        t.end(new Error('should not exists'))
+      })
+      .catch(() => {
+        t.ok(true, 'it should reject')
+        t.end()
+      })
+  })
+
   teardown(testBucket, t)
+})
+
+test('test existence of non created bucket', (t) => {
+  storage.bucket(`foo${Date.now()}`).exists({key: 'foobar'})
+    .then(() => {
+      t.end(new Error('should not exists'))
+    })
+    .catch(() => {
+      t.ok(true, 'it should reject')
+      t.end()
+    })
 })
