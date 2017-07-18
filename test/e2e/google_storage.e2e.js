@@ -50,8 +50,9 @@ function teardown (testBucket, t) {
   })
 }
 
+const testBucket = `cloud-storage-e2e-${Date.now()}`
+
 test('Google > upload a buffer with public access', (t) => {
-  const testBucket = `cloud-storage-e2e-${Date.now()}`
   setup(testBucket, t)
   t.test('upload a buffer', (t) => {
     fs.readFile(samplePath, (err, data) => {
@@ -73,7 +74,6 @@ test('Google > upload a buffer with public access', (t) => {
 })
 
 test('Google > upload a buffer with restricted access', (t) => {
-  const testBucket = `cloud-storage-e2e-${Date.now()}`
   const refObj = {}
   setup(testBucket, t)
 
@@ -111,7 +111,6 @@ test('Google > upload a buffer with restricted access', (t) => {
 })
 
 test('Google > upload a buffer publicly and specifying content-type', (t) => {
-  const testBucket = `cloud-storage-e2e-${Date.now()}`
   setup(testBucket, t)
 
   t.test('upload a buffer', (t) => {
@@ -136,7 +135,6 @@ test('Google > upload a buffer publicly and specifying content-type', (t) => {
 })
 
 test('Google > upload a stream with public access', (t) => {
-  const testBucket = `cloud-storage-e2e-${Date.now()}`
   setup(testBucket, t)
 
   t.test('upload a stream', (t) => {
@@ -158,7 +156,6 @@ test('Google > upload a stream with public access', (t) => {
 })
 
 test('Google > upload a stream with restricted access', (t) => {
-  const testBucket = `cloud-storage-e2e-${Date.now()}`
   setup(testBucket, t)
 
   t.test('upload a stream', (t) => {
@@ -180,7 +177,6 @@ test('Google > upload a stream with restricted access', (t) => {
 })
 
 test('Google > upload a stream publicly and specifying content-type', (t) => {
-  const testBucket = `cloud-storage-e2e-${Date.now()}`
   setup(testBucket, t)
 
   t.test('upload a stream', (t) => {
