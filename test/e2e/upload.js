@@ -25,9 +25,11 @@ const uploadPublicWithContentType = (storage, testBucket, testObject, t, data) =
 
 const uploadPublic = (storage, testBucket, testObject, t, data) => {
   const bucket = storage.bucket(testBucket)
+  const start = new Date()
   bucket.upload(data, {key: testObject, acl: 'public'})
     .then((result) => {
       t.ok(result && result.Location, 'upload OK')
+      console.log(`upload time: ${new Date() - start}ms`)
       return result.Location
     })
     .then((url) => request.get({ url, json: true }))
