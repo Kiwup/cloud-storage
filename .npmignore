@@ -1,0 +1,4 @@
+.vimrc.custom
+circle.yml
+.circleci
+test/*
