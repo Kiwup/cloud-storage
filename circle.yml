@@ -8,10 +8,3 @@ test:
   override:
     - npm test
     - npm run e2e
-
-deployment:
-  npm:
-    branch: master
-    commands:
-      - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "${HOME}/.npmrc"
-      - npm run 2npm
