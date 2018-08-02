@@ -43,5 +43,9 @@ jobs:
           destination: coverage
       - store_test_results:
           path: test_results
+      - run:
+          name: upload test report to codecov.io
+          command: cat ./coverage/lcov.info && ./node_modules/.bin/codecov
+
 
 
