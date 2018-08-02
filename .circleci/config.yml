@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: &node_image circleci/node:8.11.3
+    working_directory: ${HOME}/cloud-storage
     steps:
       - checkout
       - restore_cache:
