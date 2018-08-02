@@ -8,9 +8,11 @@
   },
   "scripts": {
     "pretest": "standard",
-    "test": "nyc --all tape 'test/unit/*.test.js' | tap-spec",
-    "posttest": "nyc report --reporter=lcov",
-    "e2e": "tape 'test/e2e/*.e2e.js' | tap-spec",
+    "test": "nyc tape 'test/unit/*.test.js' | tee test_results.tap | tap-spec",
+    "posttest": "nyc report",
+    "e2e": "tape 'test/e2e/*.e2e.js' | tee e2e_results.tap | tap-spec",
+    "junit-report": "cat test_results.tap | tap-xunit > test_results.xml",
+    "junit-report-e2e": "cat e2e_results.tap | tap-xunit > e2e_results.xml",
     "2npm": "publish"
   },
   "nyc": {
@@ -18,6 +20,10 @@
       "test",
       "coverage",
       "node_modules"
+    ],
+    "all": true,
+    "reporter": [
+      "lcov"
     ]
   },
   "repository": {
@@ -51,6 +57,7 @@
     "request-promise": "4.2.2",
     "standard": "10.0.3",
     "tap-spec": "4.1.2",
+    "tap-xunit": "2.3.0",
     "tape": "4.9.1"
   }
 }
