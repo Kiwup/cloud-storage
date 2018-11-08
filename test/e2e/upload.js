@@ -4,7 +4,7 @@ const request = require('request-promise')
 
 const uploadPublicWithContentType = (storage, testBucket, testObject, t, data) => {
   const bucket = storage.bucket(testBucket)
-  bucket.upload(data, {key: testObject, acl: 'public', contentType: 'application/json'})
+  bucket.upload(data, { key: testObject, acl: 'public', contentType: 'application/json' })
     .then((result) => {
       t.ok(result && result.Location, 'upload OK')
       return result.Location
@@ -26,7 +26,7 @@ const uploadPublicWithContentType = (storage, testBucket, testObject, t, data) =
 const uploadPublic = (storage, testBucket, testObject, t, data) => {
   const bucket = storage.bucket(testBucket)
   const start = new Date()
-  bucket.upload(data, {key: testObject, acl: 'public'})
+  bucket.upload(data, { key: testObject, acl: 'public' })
     .then((result) => {
       t.ok(result && result.Location, 'upload OK')
       console.log(`upload time: ${new Date() - start}ms`)
@@ -42,7 +42,7 @@ const uploadPublic = (storage, testBucket, testObject, t, data) => {
 
 const uploadRestricted = (storage, testBucket, testObject, t, data) => {
   const bucket = storage.bucket(testBucket)
-  bucket.upload(data, {key: testObject})
+  bucket.upload(data, { key: testObject })
     .then((result) => {
       t.ok(result && result.Location, 'upload OK')
       return result.Location

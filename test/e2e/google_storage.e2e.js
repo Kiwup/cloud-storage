@@ -63,7 +63,7 @@ test('Google > upload a buffer with public access', (t) => {
     })
   })
   t.test('test existence', (t) => {
-    storage.bucket(testBucket).exists({key: testObject})
+    storage.bucket(testBucket).exists({ key: testObject })
       .then((data) => {
         t.ok(data, 'should return data')
         t.end()
@@ -99,7 +99,7 @@ test('Google > upload a buffer with restricted access', (t) => {
   })
 
   t.test('test existence', (t) => {
-    storage.bucket(testBucket).exists({key: testObject})
+    storage.bucket(testBucket).exists({ key: testObject })
       .then((data) => {
         t.ok(data, 'should return data')
         t.end()
@@ -123,7 +123,7 @@ test('Google > upload a buffer publicly and specifying content-type', (t) => {
   })
 
   t.test('test existence', (t) => {
-    storage.bucket(testBucket).exists({key: testObject})
+    storage.bucket(testBucket).exists({ key: testObject })
       .then((data) => {
         t.ok(data, 'should return data')
         t.end()
@@ -144,7 +144,7 @@ test('Google > upload a stream with public access', (t) => {
   })
 
   t.test('test existence', (t) => {
-    storage.bucket(testBucket).exists({key: testObject})
+    storage.bucket(testBucket).exists({ key: testObject })
       .then((data) => {
         t.ok(data, 'should return data')
         t.end()
@@ -165,7 +165,7 @@ test('Google > upload a stream with restricted access', (t) => {
   })
 
   t.test('test existence', (t) => {
-    storage.bucket(testBucket).exists({key: testObject})
+    storage.bucket(testBucket).exists({ key: testObject })
       .then((data) => {
         t.ok(data, 'should return data')
         t.end()
@@ -186,7 +186,7 @@ test('Google > upload a stream publicly and specifying content-type', (t) => {
   })
 
   t.test('test existence', (t) => {
-    storage.bucket(testBucket).exists({key: testObject})
+    storage.bucket(testBucket).exists({ key: testObject })
       .then((data) => {
         t.ok(data, 'should return data')
         t.end()
@@ -198,7 +198,7 @@ test('Google > upload a stream publicly and specifying content-type', (t) => {
 })
 
 test('test existence of non created bucket', (t) => {
-  storage.bucket(`foo${Date.now()}`).exists({key: 'foobar'})
+  storage.bucket(`foo${Date.now()}`).exists({ key: 'foobar' })
     .then(() => {
       t.end(new Error('should not exists'))
     })

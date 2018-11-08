@@ -2,7 +2,7 @@
 
 const getReadStream = (storage, testBucket, testObject, t, refObj = {}, etag) => {
   const bucket = storage.bucket(testBucket)
-  const opts = {key: testObject}
+  const opts = { key: testObject }
   if (etag) {
     opts.ifNoneMatch = etag
   }
@@ -20,7 +20,7 @@ const getReadStream = (storage, testBucket, testObject, t, refObj = {}, etag) =>
 const getReadStreamIfNoneMatch = (storage, testBucket, testObject, t, etag) => {
   t.ok(!!etag, 'etag should not be falsy')
   const bucket = storage.bucket(testBucket)
-  const stream = bucket.getReadStream({key: testObject, ifNoneMatch: etag})
+  const stream = bucket.getReadStream({ key: testObject, ifNoneMatch: etag })
   stream
     .on('data', (buf) => {
       t.end(new Error('it should no parse data'))
