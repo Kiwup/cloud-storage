@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/Kiwup/cloud-storage#readme",
   "dependencies": {
-    "@google-cloud/storage": "1.7.0",
+    "@google-cloud/storage": "2.4.2",
     "aws-sdk": "2.285.1",
     "bluebird": "3.5.1",
     "fast-crc32c": "1.0.4",
