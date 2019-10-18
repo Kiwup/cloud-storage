@@ -45,7 +45,7 @@
   "dependencies": {
     "@google-cloud/storage": "2.4.2",
     "aws-sdk": "2.285.1",
-    "bluebird": "3.5.1",
+    "bluebird": "3.7.1",
     "fast-crc32c": "1.0.4",
     "is-stream": "1.1.0"
   },
